@@ -17,7 +17,7 @@ Cannonball::~Cannonball(void)
 
 void Cannonball::Draw(sf::RenderWindow & window)
 {
-	
+	window.draw(sprite);
 }
 
 void Cannonball::SetPosition(float x ,float y)

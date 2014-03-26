@@ -10,7 +10,9 @@ public:
 	~GO(void);
 	void virtual Draw(sf::RenderWindow & window);
 	void virtual setPosition();
+
 private:
+
 	float xPos, yPos;
 	sf::Sprite  sprite;
 

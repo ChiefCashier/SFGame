@@ -1,5 +1,6 @@
 #pragma once
-#include "go.h"
+#include "GO.h"
+
 class Cannonball :public GO
 {
 public:
@@ -11,11 +12,13 @@ public:
 	void SetRotation(float rotation);
 	~Cannonball(void);
 
+	sf::IntRect border;
+
 private:
 
 	float xPos, yPos;
 	float rotation;
 	sf::Sprite sprite;
-
+	
 };
 

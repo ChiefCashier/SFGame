@@ -70,14 +70,18 @@
     <ClCompile Include="Cannonball.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GO.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="Update.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cannonball.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GO.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Ship.h" />
+    <ClInclude Include="Update.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,7 @@
 #include "Ship.h"
 
 
-Ship::Ship(float x, float y, sf::Texture* tex, float r, sf::IntRect border)
+Ship::Ship(float x, float y, sf::Texture* tex, float r, sf::IntRect border, int id)
 {
 	xPos = x;
 	yPos = y;
@@ -9,6 +9,7 @@ Ship::Ship(float x, float y, sf::Texture* tex, float r, sf::IntRect border)
 	sprite.setTexture(*tex);
 	sprite.setTextureRect(border);
 	sprite.setPosition(x, y);
+	ID = id;
 }
 
 Ship::~Ship(void)
@@ -38,4 +39,14 @@ float Ship::GetRotation()
 void Ship::Move()
 {
 	sprite.move(-4*sin(rotation*3.14159265/180), 4*cos(rotation*3.14159265/180));
+}
+
+float Ship::GetPosx()
+{
+	return sprite.getPosition().x;
+}
+
+float Ship::GetPosy()
+{
+	return sprite.getPosition().y;
 }

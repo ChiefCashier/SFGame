@@ -1,4 +1,6 @@
-int main()
+#include "Game.h"
+void main()
 {
-	return 0;
+	Game game;
+	game.GameLoop();
 }
