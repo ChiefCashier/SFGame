@@ -11,18 +11,18 @@ public:
 	void GameLoop();
 	void MenuScreen();
 
+	
+	static sf::Texture *tex;
+
 private:
 
-	sf::Texture *tex;
+	
+	sf::Texture texturesheet;
 
 	bool isRunning;
 
-	Update U;
+	static sf::RenderWindow window;
 
-	std::vector<Ship> shipvector;
-	std::vector<Cannonball*> ballvector;
-
-	std::vector<Ship>::iterator si;
-	std::vector<Cannonball*>::iterator ci;
+	
 };
 

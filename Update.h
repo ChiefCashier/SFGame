@@ -6,28 +6,31 @@
 class Update
 {
 public:
-	Update(){sf::RenderWindow window(sf::VideoMode(1200, 800), "jottain muuta!" );};
-	~Update(void);
 
-	void GameUpdate();
+	Update(sf::RenderWindow & window);
+	//~Update(void);
+
+	void GameUpdate(sf::RenderWindow & window);
 
 	void Collision();
 
 	void Input(std::vector<Ship>::iterator si);
 
-	sf::RenderWindow GetWindow();
+	static std::vector<Ship> shipvector;
+	static std::vector<Ship>::iterator si;
 
-private:
+	std::vector<Cannonball*>::iterator ci;
+	std::vector<Cannonball*> ballvector;
 
-	sf::RenderWindow window;
+	sf::RenderWindow & window;
+
+protected:
+
 	sf::Clock clock;
 	sf::Time elapsed1;
 	sf::Texture *tex;
+	sf::Texture texturesheet;
+	
 
-	std::vector<Ship> shipvector;
-	std::vector<Cannonball*> ballvector;
-
-	std::vector<Ship>::iterator si;
-	std::vector<Cannonball*>::iterator ci;
 };
 

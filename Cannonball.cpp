@@ -1,7 +1,7 @@
 #include "Cannonball.h"
 
 
-Cannonball::Cannonball(float x, float y, sf::Texture* tex, float r, sf::IntRect border)
+Cannonball::Cannonball(float x, float y, sf::Texture* tex, float r, sf::IntRect border, int ID)
 {
 	xPos = x;
 	yPos = y;
@@ -27,10 +27,15 @@ void Cannonball::SetPosition(float x ,float y)
 
 void Cannonball::Move()
 {
-	sprite.move(-40*sin(rotation*3.14159265/180), 40*cos(rotation*3.14159265/180));
+	sprite.move(-4*sin(rotation*3.14159265/180), 4*cos(rotation*3.14159265/180));
 }
 
 void Cannonball::SetRotation(float rotation)
 {
 	sprite.setRotation(rotation);
+}
+
+int Cannonball::GetID()
+{
+	return ID;
 }

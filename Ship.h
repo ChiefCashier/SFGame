@@ -1,6 +1,6 @@
 #pragma once
 #include "GO.h"
-class Ship : public GO
+class Ship : public virtual GO
 {
 public:
 
@@ -13,14 +13,16 @@ public:
 	float GetPosy();
 	void Rotate(float r);
 	void Move();
-	int ID;
+	int GetID();
+
 
 	sf::IntRect border;
+	
+protected:
 
-private:
 	float rotation;
 	float xPos, yPos;
-	
+	int ID;
 	sf::Sprite  sprite;
 };
 

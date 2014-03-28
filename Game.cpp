@@ -1,10 +1,10 @@
 #include "Game.h"
 
 
-
+sf::Texture* Game::tex;
 Game::Game(void)
 {
-	bool isRunning = true;
+	
 }
 
 
@@ -13,18 +13,23 @@ Game::~Game(void)
 
 void Game::GameLoop()
 {
+	sf::RenderWindow window(sf::VideoMode(1200, 800), "jottain muuta!" );
+	texturesheet.loadFromFile("spreadsheet.png");// HUOM TÄHÄN TULEE TEXTUURIMAPPI!!!!!
+	tex = &texturesheet;
+	Ship s(200, 300, tex, 0.0f, sf::IntRect(0, 0, 100, 100), 1);
+	Ship k(400, 600, tex, 0.0f, sf::IntRect(100, 0, 200, 200), 2);
+
+	Update::shipvector.push_back(s);
+	Update::shipvector.push_back(k);
+
+	Update U(window);
+	
+	
 	
 
-	Ship s(200, 300, tex, 0.0f, sf::IntRect(0, 0, 100, 100), 1);
-	Ship k(400, 600, tex, 0.0f, sf::IntRect(0, 0, 100, 100), 2);
-
-	shipvector.push_back(s);
-	shipvector.push_back(k);
-
-
-	while(U.GetWindow().isOpen())
+	while(window.isOpen())
 	{
-		U.GameUpdate();
+		U.GameUpdate(window);
 	}
 
 
