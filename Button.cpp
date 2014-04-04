@@ -1,29 +1,26 @@
-#include "GO.h"
+#include "Button.h"
 
 
-GO::GO(float x, float y, sf::Texture* tex, sf::IntRect border)
+Button::Button(float x, float y, sf::Texture* tex, sf::IntRect border)
 {
 	xPos = x;
 	yPos = y;
 	sprite.setTexture(*tex);
 	sprite.setPosition(xPos, yPos);
+	sprite.setTextureRect(border);
+}
 
-}
-GO::GO()
-{
-	xPos = 0;
-	yPos = 0;
-}
-GO::~GO(void)
+
+Button::~Button(void)
 {
 }
 
-void GO::Draw(sf::RenderWindow & window)
+void Button::Draw(sf::RenderWindow & window)
 {
 	window.draw(sprite);
 }
 
-void GO::setPosition()
+void Button::setPosition()
 {
 	sprite.setPosition(xPos, yPos);
 	sprite.setOrigin((sprite.getLocalBounds().width)/2, (sprite.getLocalBounds().height)/2);

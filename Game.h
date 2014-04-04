@@ -1,5 +1,6 @@
 #pragma once
 #include "Update.h"
+#include "Mainmenu.h"
 #include <SFML/Graphics.hpp>
 
 class Game

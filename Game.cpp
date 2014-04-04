@@ -30,6 +30,8 @@ void Game::GameLoop()
 
 	while(window.isOpen())
 	{
+
+
 		U.GameUpdate(window);
 
 

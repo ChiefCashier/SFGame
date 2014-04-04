@@ -74,7 +74,7 @@ void Update::Collision()
 		for(ci = ballvector.begin(); ci != ballvector.end();)
 		{
 			
-			if(!si->Border().intersects( (*ci)->Border() ) )
+			if(!(si->Border()).intersects( (*ci)->Border() ) )
 			{
 				ci++;
 			}
@@ -107,8 +107,7 @@ void Update::Collision()
 		
 }
 
-
-void Update::Input(std::vector<Ship>::iterator si)
+void Update::Input(std::vector<Ship>::iterator si)//tarvitsee vielä lataus systeemin;
 {
 	
 	float frameTime = elapsed1.asSeconds();
@@ -125,7 +124,7 @@ void Update::Input(std::vector<Ship>::iterator si)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 			{
 				ballvector.push_back(new Cannonball(si->GetPosx(), si->GetPosy(), tex,  si->GetRotation()-90, sf::IntRect(0, 100, 50, 50), si->GetID()));
-			}
+			}//lisää mahdollisuuksia ampua!!!
 		}
 	
 			if(si->GetID() == 1)
@@ -136,6 +135,7 @@ void Update::Input(std::vector<Ship>::iterator si)
 		si->Rotate(-150*frameTime);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		si->Rotate(+150*frameTime);
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 			{
 				

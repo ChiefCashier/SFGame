@@ -67,19 +67,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Cannonball.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GO.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mainmenu.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Update.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Cannonball.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GO.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Mainmenu.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Update.h" />
   </ItemGroup>

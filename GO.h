@@ -5,7 +5,7 @@
 class GO
 {
 public:
-	GO(float xPos, float yPos, sf::Texture* tex);
+	GO(float xPos, float yPos, sf::Texture* tex, sf::IntRect border);
 	GO();
 	~GO(void);
 	void virtual Draw(sf::RenderWindow & window);

@@ -26,6 +26,7 @@ protected:
 	float xPos, yPos;
 	int ID, Hp;
 	sf::Sprite  sprite;
-
+	float scale;
+	sf::FloatRect border;
 };
 

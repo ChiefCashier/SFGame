@@ -9,7 +9,7 @@ Cannonball::Cannonball(float x, float y, sf::Texture* tex, float r, sf::IntRect 
 	sprite.setTexture(*tex);
 	sprite.setTextureRect(border);
 	sprite.setPosition(x, y);
-	sprite.setOrigin(25,25);
+	sprite.setOrigin((sprite.getLocalBounds().width)/2, (sprite.getLocalBounds().height)/2);
 	ID = id;
 }
 
@@ -31,6 +31,7 @@ void Cannonball::SetPosition(float x ,float y)
 void Cannonball::Move()
 {
 	sprite.move(-4*sin(rotation*3.14159265/180), 4*cos(rotation*3.14159265/180));
+	sprite.setRotation(rotation);
 }
 
 void Cannonball::SetRotation(float rotation)
