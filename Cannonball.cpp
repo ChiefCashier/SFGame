@@ -1,7 +1,7 @@
 #include "Cannonball.h"
 
 
-Cannonball::Cannonball(float x, float y, sf::Texture* tex, float r, sf::IntRect border, int ID)
+Cannonball::Cannonball(float x, float y, sf::Texture* tex, float r, sf::IntRect border, int id)
 {
 	xPos = x;
 	yPos = y;
@@ -9,10 +9,13 @@ Cannonball::Cannonball(float x, float y, sf::Texture* tex, float r, sf::IntRect 
 	sprite.setTexture(*tex);
 	sprite.setTextureRect(border);
 	sprite.setPosition(x, y);
+	sprite.setOrigin(25,25);
+	ID = id;
 }
 
 Cannonball::~Cannonball(void)
 {
+	
 }
 
 void Cannonball::Draw(sf::RenderWindow & window)
@@ -38,4 +41,10 @@ void Cannonball::SetRotation(float rotation)
 int Cannonball::GetID()
 {
 	return ID;
+}
+sf::FloatRect Cannonball::Border()
+{
+	Bord = sprite.getGlobalBounds();
+	
+	return Bord;
 }

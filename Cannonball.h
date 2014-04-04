@@ -12,8 +12,8 @@ public:
 	void SetRotation(float rotation);
 	int GetID();
 	~Cannonball(void);
-
-	sf::IntRect border;
+	sf::FloatRect Border();
+	
 
 private:
 
@@ -21,5 +21,7 @@ private:
 	float rotation;
 	sf::Sprite sprite;
 	int ID;
+	sf::IntRect border;
+	sf::FloatRect Bord;
 };
 

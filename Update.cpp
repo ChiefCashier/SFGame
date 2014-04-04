@@ -25,14 +25,24 @@ void Update::GameUpdate(sf::RenderWindow & window)
 
 	window.clear(sf::Color::Blue);
 		
+
+	for( ci = ballvector.begin(); ci != ballvector.end() ; )
+	{
+		if((*ci)->Border().intersects(sf::FloatRect(0, 0, 1200, 800)))
+		{
+			(*ci)->Draw(window);
+			ci++;
+		}
+		else
+		{
+			(*ci)->~Cannonball();
+			ci = ballvector.erase(ci);//tässä tuhotaan bulletit
+		}
+	}
+	
 	for( si = shipvector.begin(); si != shipvector.end() ; si++)	
 		si->Draw(window);
-	for( ci = ballvector.begin(); ci != ballvector.end() ; ci++)
-		(*ci)->Draw(window);
-
 	window.display();
-
-
 	
 	for( si = shipvector.begin(); si != shipvector.end() ; si++)
 		Input(si);
@@ -62,22 +72,41 @@ void Update::Collision()
 	for(si = shipvector.begin(); si != shipvector.end();)
 	{
 		for(ci = ballvector.begin(); ci != ballvector.end();)
+		{
+			
+			if(!si->Border().intersects( (*ci)->Border() ) )
+			{
+				ci++;
+			}
+			else
+			{
+				if((*ci)->GetID() == si->GetID())
+				{
+					ci++;
+				}
+				else
+				{
+					(*ci)->~Cannonball();
+					ci = ballvector.erase(ci);
+					si->SetHP((si->GetHP())-1);
+
+					if(si->GetHP() == 0)
 					{
-					
-						if(!si->border.intersects( ((*ci)->border)))
-							ci++;
-						else
-						{
-							(*ci)->~Cannonball();
-							ci = ballvector.erase(ci);
-						
-						}
-					
+						// kumpi laiva voitti !!!!
+						// victory screen asd
+						// asioita tapahtuu asdasda
 					}
+				}
+			}	
+			
+			
+			
+		}
 		si++;
 	}
-
+		
 }
+
 
 void Update::Input(std::vector<Ship>::iterator si)
 {
@@ -92,9 +121,10 @@ void Update::Input(std::vector<Ship>::iterator si)
 		si->Rotate(-150*frameTime);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		si->Rotate(+150*frameTime);
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 			{
-				ballvector.push_back(new Cannonball(si->GetPosx(), si->GetPosy(), tex,  si->GetRotation()-90, sf::IntRect(0, 0, 100, 100), 2));
+				ballvector.push_back(new Cannonball(si->GetPosx(), si->GetPosy(), tex,  si->GetRotation()-90, sf::IntRect(0, 100, 50, 50), si->GetID()));
 			}
 		}
 	
@@ -109,7 +139,17 @@ void Update::Input(std::vector<Ship>::iterator si)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 			{
 				
-				ballvector.push_back(new Cannonball(si->GetPosx(), si->GetPosy(), tex,  si->GetRotation()-90, sf::IntRect(0, 100, 50, 150), 2));
+				ballvector.push_back(new Cannonball(si->GetPosx(), si->GetPosy(), tex,  si->GetRotation()-90, sf::IntRect(0, 100, 50, 50), si->GetID()));
+			}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+			{
+				
+				ballvector.push_back(new Cannonball(si->GetPosx(), si->GetPosy(), tex,  si->GetRotation()+90, sf::IntRect(0, 100, 50, 50), si->GetID()));
+			}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+			{
+				
+				ballvector.push_back(new Cannonball(si->GetPosx(), si->GetPosy(), tex,  si->GetRotation(), sf::IntRect(0, 100, 50, 50), si->GetID()));
 			}
 		}
 
