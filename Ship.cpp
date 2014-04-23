@@ -42,9 +42,9 @@ float Ship::GetRotation()
 	return sprite.getRotation();
 }
 
-void Ship::Move()
+void Ship::Move(float frametime)
 {
-	sprite.move(-0.04*sin(sprite.getRotation()*3.14159265/180)*0, 0*0.04*cos(sprite.getRotation()*3.14159265/180));
+	sprite.move(-400*sin(sprite.getRotation()*3.14159265/180)*frametime, 400*cos(sprite.getRotation()*3.14159265/180)*frametime);
 }
 
 float Ship::GetPosx()
@@ -85,4 +85,9 @@ int Ship::GetHP()
 void Ship::SetHP(int x)
 {
 	Hp = x;
+}
+
+void Ship::Teejotain(sf::IntRect b)
+{
+	sprite.setTextureRect(b);
 }

@@ -25,3 +25,8 @@ void Button::setPosition()
 	sprite.setPosition(xPos, yPos);
 	sprite.setOrigin((sprite.getLocalBounds().width)/2, (sprite.getLocalBounds().height)/2);
 }
+
+void Button::Teejotain(sf::IntRect b)
+{
+	sprite.setTextureRect(b);
+}

@@ -7,6 +7,8 @@ public:
 	~Button(void);
 	void Draw(sf::RenderWindow & window);
 	void setPosition();
+	
+	void Teejotain(sf::IntRect b);
 
 private:
 

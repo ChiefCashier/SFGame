@@ -1,5 +1,6 @@
 #pragma once
 #include "GO.h"
+#include "Button.h"
 #include <SFML/Graphics.hpp>
 
 class Mainmenu
@@ -10,13 +11,16 @@ public:
 
 	sf::RenderWindow & window;
 
-	void MenuUpdate(sf::RenderWindow &window);
+	int MenuUpdate(sf::RenderWindow &window);
+
 private:
 
-	int shape;
+	bool shape;
 
 	sf::Texture *tex;
 	sf::Texture texturesheet;
 
+	int laivaLKM;
+	sf::Event _event;
 };
 

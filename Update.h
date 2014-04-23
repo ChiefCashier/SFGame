@@ -12,12 +12,12 @@ public:
 
 	void GameUpdate(sf::RenderWindow & window);
 
-	void Collision();
+	bool Collision();
 
-	void Input(std::vector<Ship>::iterator si);
+	void Input(std::vector<Ship*>::iterator si);
 
-	static std::vector<Ship> shipvector;
-	static std::vector<Ship>::iterator si;
+	static std::vector<Ship*> shipvector;
+	static std::vector<Ship*>::iterator si;
 
 	std::vector<Cannonball*>::iterator ci;
 	std::vector<Cannonball*> ballvector;
@@ -31,6 +31,7 @@ protected:
 	sf::Texture *tex;
 	sf::Texture texturesheet;
 	
+	int loseCounter;
 
 };
 

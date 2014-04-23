@@ -3,8 +3,8 @@
 #include <iostream>
 using namespace std;
 
-vector<Ship> Update::shipvector;
-vector<Ship>::iterator Update::si;
+vector<Ship*> Update::shipvector;
+vector<Ship*>::iterator Update::si;
 Update::Update(sf::RenderWindow &window)
 	:window(window)
 {
@@ -19,7 +19,11 @@ Update::Update(sf::RenderWindow &window)
 
 void Update::GameUpdate(sf::RenderWindow & window)
 {
-		
+	loseCounter = 0;
+	while(Collision() && window.isOpen())
+	{
+
+
 	elapsed1 = clock.getElapsedTime();
 	clock.restart();
 
@@ -28,7 +32,7 @@ void Update::GameUpdate(sf::RenderWindow & window)
 
 	for( ci = ballvector.begin(); ci != ballvector.end() ; )
 	{
-		if((*ci)->Border().intersects(sf::FloatRect(0, 0, 1200, 800)))
+		if((*ci)->Border().intersects(sf::FloatRect(0, 0, 1920, 1200)))
 		{
 			(*ci)->Draw(window);
 			ci++;
@@ -41,7 +45,7 @@ void Update::GameUpdate(sf::RenderWindow & window)
 	}
 	
 	for( si = shipvector.begin(); si != shipvector.end() ; si++)	
-		si->Draw(window);
+		(*si)->Draw(window);
 	window.display();
 	
 	for( si = shipvector.begin(); si != shipvector.end() ; si++)
@@ -52,10 +56,10 @@ void Update::GameUpdate(sf::RenderWindow & window)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		window.close();
 
-	Collision();
+	float frameTime = elapsed1.asSeconds();
 
 	for( si = shipvector.begin(); si != shipvector.end() ; si++)
-		si->Move();
+		(*si)->Move(frameTime);
 	for( ci = ballvector.begin(); ci != ballvector.end() ; ci++)
 		(*ci)->Move();
 
@@ -63,24 +67,24 @@ void Update::GameUpdate(sf::RenderWindow & window)
 	
 
 
-
+	}
 	
 }
 
-void Update::Collision()
+bool Update::Collision()
 {
 	for(si = shipvector.begin(); si != shipvector.end();)
 	{
 		for(ci = ballvector.begin(); ci != ballvector.end();)
 		{
 			
-			if(!(si->Border()).intersects( (*ci)->Border() ) )
+			if(!((*si)->Border()).intersects( (*ci)->Border() ) )
 			{
 				ci++;
 			}
 			else
 			{
-				if((*ci)->GetID() == si->GetID())
+				if((*ci)->GetID() == (*si)->GetID())
 				{
 					ci++;
 				}
@@ -88,68 +92,81 @@ void Update::Collision()
 				{
 					(*ci)->~Cannonball();
 					ci = ballvector.erase(ci);
-					si->SetHP((si->GetHP())-1);
+					(*si)->SetHP(((*si)->GetHP())-1);
 
-					if(si->GetHP() == 0)
+					if((*si)->GetHP() == 0)
 					{
+						(*si)->SetPosition(-1000,-1000);
 						// kumpi laiva voitti !!!!
 						// victory screen asd
 						// asioita tapahtuu asdasda
+						loseCounter++;
+						if(1 == (2 - loseCounter))
+						{
+							return false;
+						}
 					}
+
+
 				}
 			}	
 			
 			
 			
 		}
+
 		si++;
 	}
-		
+	return true;
 }
 
-void Update::Input(std::vector<Ship>::iterator si)//tarvitsee vielä lataus systeemin;
+void Update::Input(std::vector<Ship*>::iterator si)//tarvitsee vielä lataus systeemin;
 {
 	
 	float frameTime = elapsed1.asSeconds();
 	cout << frameTime << endl;
 
-		if(si->GetID() == 2)
+		if((*si)->GetID() == 2)
 		{
 	
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		si->Rotate(-150*frameTime);
+		(*si)->Rotate(-150*frameTime);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		si->Rotate(+150*frameTime);
+		(*si)->Rotate(+150*frameTime);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 			{
-				ballvector.push_back(new Cannonball(si->GetPosx(), si->GetPosy(), tex,  si->GetRotation()-90, sf::IntRect(0, 100, 50, 50), si->GetID()));
+				ballvector.push_back(new Cannonball((*si)->GetPosx(), (*si)->GetPosy(), tex,  (*si)->GetRotation()-90, sf::IntRect(0, 100, 50, 50), (*si)->GetID()));
 			}//lisää mahdollisuuksia ampua!!!
 		}
 	
-			if(si->GetID() == 1)
+			if((*si)->GetID() == 1)
 		{
 
 	
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		si->Rotate(-150*frameTime);
+		(*si)->Rotate(-150*frameTime);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		si->Rotate(+150*frameTime);
+		(*si)->Rotate(+150*frameTime);
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+			{
+				(*si)->Teejotain(sf::IntRect(0, 0, 200, 100));
+			}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 			{
-				
-				ballvector.push_back(new Cannonball(si->GetPosx(), si->GetPosy(), tex,  si->GetRotation()-90, sf::IntRect(0, 100, 50, 50), si->GetID()));
+				ballvector.push_back(new Cannonball((*si)->GetPosx(), (*si)->GetPosy(), tex,  (*si)->GetRotation()-90, sf::IntRect(0, 100, 50, 50), (*si)->GetID()));
 			}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 			{
 				
-				ballvector.push_back(new Cannonball(si->GetPosx(), si->GetPosy(), tex,  si->GetRotation()+90, sf::IntRect(0, 100, 50, 50), si->GetID()));
+				ballvector.push_back(new Cannonball((*si)->GetPosx(), (*si)->GetPosy(), tex,  (*si)->GetRotation()+90, sf::IntRect(0, 100, 50, 50), (*si)->GetID()));
 			}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 			{
 				
-				ballvector.push_back(new Cannonball(si->GetPosx(), si->GetPosy(), tex,  si->GetRotation(), sf::IntRect(0, 100, 50, 50), si->GetID()));
+				ballvector.push_back(new Cannonball((*si)->GetPosx(), (*si)->GetPosy(), tex,  (*si)->GetRotation(), sf::IntRect(0, 100, 50, 50), (*si)->GetID()));
 			}
 		}
 

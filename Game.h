@@ -1,6 +1,7 @@
 #pragma once
 #include "Update.h"
 #include "Mainmenu.h"
+#include "VictoryScreen.h"
 #include <SFML/Graphics.hpp>
 
 class Game
@@ -12,15 +13,12 @@ public:
 	void GameLoop();
 	void MenuScreen();
 
-	
 	static sf::Texture *tex;
 
 private:
 
 	
 	sf::Texture texturesheet;
-
-	bool isRunning;
 
 	static sf::RenderWindow window;
 

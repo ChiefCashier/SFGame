@@ -13,29 +13,41 @@ Game::~Game(void)
 
 void Game::GameLoop()
 {
-	sf::RenderWindow window(sf::VideoMode(1200, 800), "jottain muuta!" );
+	sf::RenderWindow window(sf::VideoMode(std::min(sf::VideoMode::getDesktopMode().width,(unsigned)1920)//1920
+                            , std::min(sf::VideoMode::getDesktopMode().height,(unsigned)1200))//1200
+							
+							,"jottain muuta!" );
 	texturesheet.loadFromFile("spreadsheet.png");// HUOM TÄHÄN TULEE TEXTUURIMAPPI!!!!!
 	tex = &texturesheet;
 	
-	Ship s(200, 300, tex, 0.0f, sf::IntRect(0, 0, 100, 100), 1, 3);
-	Ship k(400, 600, tex, 0.0f, sf::IntRect(100, 0, 100, 100), 2, 3);
+	Mainmenu M(window);
 
-	Update::shipvector.push_back(s);
-	Update::shipvector.push_back(k);
+	int laivaLKM = 6 ;//M.MenuUpdate(window);
+	for(int k = 1; k < (laivaLKM / 2)+1; k++)
+	{
+	for(int i = 0; i < laivaLKM / k; i++)//dynaaminen laivan luonti, jossa mukana mahdollisuus laivojen lkm:n päättämiseen
+	{
+		Ship* ship = new Ship(((i*600)+100 ), ((k-1)*300)+100, tex, 0.0f, sf::IntRect(0, i*100, 100, 100), k+i, 3);
+		Update::shipvector.push_back(ship);
+	
+	}
+	}
+
+	// vanha malli shipin luomiseen
+	//Ship s(200, 300, tex, 0.0f, sf::IntRect(0, 0, 100, 100), 1, 3);
+	//Ship k(400, 600, tex, 0.0f, sf::IntRect(100, 0, 100, 100), 2, 3);
+
+	//Update::shipvector.push_back(s);
+	//Update::shipvector.push_back(k);
 
 	Update U(window);
+
+	U.GameUpdate(window);
+
+	VictoryScreen VS(window);
+
+	VS.VictoryScreenUpdate(window);
 	
-	
-	
-
-	while(window.isOpen())
-	{
-
-
-		U.GameUpdate(window);
-
-
-	}
 
 
 

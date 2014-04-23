@@ -12,13 +12,13 @@ public:
 	float GetPosx();
 	float GetPosy();
 	void Rotate(float r);
-	void Move();
+	void Move(float frametime);
 	int GetID();
 	int GetHP();
 	void SetHP(int);
 
 	sf::FloatRect Border();
-	
+	void Teejotain(sf::IntRect border);// vaihtaa spriten paikkaa 
 	
 protected:
 

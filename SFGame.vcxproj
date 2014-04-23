@@ -76,6 +76,7 @@
     <ClCompile Include="Mainmenu.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Update.cpp" />
+    <ClCompile Include="VictoryScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
@@ -86,6 +87,7 @@
     <ClInclude Include="Mainmenu.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Update.h" />
+    <ClInclude Include="VictoryScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="spreadsheet.png" />

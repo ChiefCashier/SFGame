@@ -7,6 +7,9 @@ GO::GO(float x, float y, sf::Texture* tex, sf::IntRect border)
 	yPos = y;
 	sprite.setTexture(*tex);
 	sprite.setPosition(xPos, yPos);
+	sprite.setTextureRect(border);
+	sprite.setOrigin((sprite.getLocalBounds().width)/2, (sprite.getLocalBounds().height)/2);
+
 
 }
 GO::GO()
@@ -26,5 +29,16 @@ void GO::Draw(sf::RenderWindow & window)
 void GO::setPosition()
 {
 	sprite.setPosition(xPos, yPos);
-	sprite.setOrigin((sprite.getLocalBounds().width)/2, (sprite.getLocalBounds().height)/2);
+
+}
+
+sf::FloatRect GO::Border()
+{
+	return sprite.getGlobalBounds();
+}
+
+
+void GO::Teejotaingo(sf::IntRect b)
+{
+	sprite.setTextureRect(b);
 }
