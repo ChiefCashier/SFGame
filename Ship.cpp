@@ -1,7 +1,7 @@
 #include "Ship.h"
 
 
-Ship::Ship(float x, float y, sf::Texture* tex, float r, sf::IntRect border, int id, int HP)
+Ship::Ship(float x, float y, sf::Texture* tex, float r, sf::IntRect border, int id, float HP)
 {
 	xPos = x;
 	yPos = y;
@@ -12,12 +12,16 @@ Ship::Ship(float x, float y, sf::Texture* tex, float r, sf::IntRect border, int 
 	sprite.setOrigin((sprite.getLocalBounds().width)/2, (sprite.getLocalBounds().height)/2);
 	ID = id;
 	Hp = HP;
-	scale = 75; // prosenttia spriten koosta
+	scale = 50; // prosenttia spriten koosta
 	scale = 100-scale;
 	scale *= 0.005;
 	
 }
-
+GO::GO()
+{
+	xPos = 0;
+	yPos = 0;
+}
 Ship::~Ship(void)
 {
 }
@@ -44,7 +48,7 @@ float Ship::GetRotation()
 
 void Ship::Move(float frametime)
 {
-	sprite.move(-400*sin(sprite.getRotation()*3.14159265/180)*frametime, 400*cos(sprite.getRotation()*3.14159265/180)*frametime);
+	sprite.move(-400 * sin(sprite.getRotation()*3.14159265/180)*frametime, 400*cos(sprite.getRotation()*3.14159265/180)*frametime);
 }
 
 float Ship::GetPosx()
@@ -77,12 +81,12 @@ sf::FloatRect Ship::Border()
 	return border;
 }
 
-int Ship::GetHP()
+float Ship::GetHP()
 {
 	return Hp;
 }
 
-void Ship::SetHP(int x)
+void Ship::SetHP(float x)
 {
 	Hp = x;
 }
@@ -90,4 +94,13 @@ void Ship::SetHP(int x)
 void Ship::Teejotain(sf::IntRect b)
 {
 	sprite.setTextureRect(b);
+}
+
+sf::Vector2f Ship::GetSpeed(float frametime)
+{
+	return	sf::Vector2f(-400*sin(sprite.getRotation()*3.14159265/180) * frametime, 400*cos(sprite.getRotation()*3.14159265/180)* frametime);
+}
+void Ship::Move(float xs, float ys)
+{
+	sprite.move(xs, ys);
 }

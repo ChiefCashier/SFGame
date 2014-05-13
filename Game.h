@@ -2,6 +2,7 @@
 #include "Update.h"
 #include "Mainmenu.h"
 #include "VictoryScreen.h"
+#include "LoadingScreen.h"
 #include <SFML/Graphics.hpp>
 
 class Game

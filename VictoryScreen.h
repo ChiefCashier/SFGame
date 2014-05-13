@@ -9,12 +9,15 @@ public:
 
 	sf::RenderWindow & window;
 
-	void VictoryScreenUpdate(sf::RenderWindow &window);
+	void VictoryScreenUpdate(sf::RenderWindow &window, int voittaja);
 
 private:
 
 	bool shape;
+	int voittaja;
 
 	sf::Texture *tex;
 	sf::Texture texturesheet;
+	sf::Text text;
+	sf::Font font;
 };

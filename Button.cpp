@@ -1,13 +1,15 @@
 #include "Button.h"
 
 
-Button::Button(float x, float y, sf::Texture* tex, sf::IntRect border)
+Button::Button(float x, float y, sf::Texture* tex, sf::IntRect border, int s)
 {
 	xPos = x;
 	yPos = y;
 	sprite.setTexture(*tex);
 	sprite.setPosition(xPos, yPos);
 	sprite.setTextureRect(border);
+	sprite.setColor(sf::Color(255, 255, 255, 125));
+	speed = s;
 }
 
 
@@ -29,4 +31,16 @@ void Button::setPosition()
 void Button::Teejotain(sf::IntRect b)
 {
 	sprite.setTextureRect(b);
+}
+
+void Button::Move(float Frametime)
+{
+	sprite.move(-speed * Frametime, 0);
+}
+
+sf::FloatRect Button::Border()
+{
+	Bord = sprite.getGlobalBounds();
+	
+	return Bord;
 }

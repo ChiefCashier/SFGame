@@ -19,6 +19,9 @@ private:
 
 	sf::Texture *tex;
 	sf::Texture texturesheet;
+	sf::Text text;
+	sf::Text text2;
+	sf::Font font;
 
 	int laivaLKM;
 	sf::Event _event;

@@ -4,7 +4,7 @@ class Ship : public virtual GO
 {
 public:
 
-	Ship(float xPos, float yPos, sf::Texture* tex, float rotation, sf::IntRect border, int ID, int Hp);
+	Ship(float xPos, float yPos, sf::Texture* tex, float rotation, sf::IntRect border, int ID, float Hp);
 	~Ship(void);
 	void Draw(sf::RenderWindow & window);
 	void SetPosition(float xPos ,float yPos);
@@ -13,9 +13,11 @@ public:
 	float GetPosy();
 	void Rotate(float r);
 	void Move(float frametime);
+	void Move(float, float);
 	int GetID();
-	int GetHP();
-	void SetHP(int);
+	float GetHP();
+	sf::Vector2f GetSpeed(float frametime);
+	void SetHP(float x);
 
 	sf::FloatRect Border();
 	void Teejotain(sf::IntRect border);// vaihtaa spriten paikkaa 
